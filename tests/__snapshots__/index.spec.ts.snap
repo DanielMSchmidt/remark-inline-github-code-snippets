@@ -1,0 +1,10 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`remark-inline-github-code-snippets > errors with single-line links 1`] = `[Error: Inlining snippet points to https://github.com/hashicorp/terraform/blob/main/internal/promising/promise.go#L30 with an invalid hash. Expected #L<number>-L<number>]`;
+
+exports[`remark-inline-github-code-snippets > ignores URLs that look correct but load nothing 1`] = `
+"
+<h1>The Main Heading</h1>
+<p><a href="https://github.com/hashicorp/terraform123123/blob/main/internal/promising/promise.go#L30-L40">inline</a></p>
+"
+`;
