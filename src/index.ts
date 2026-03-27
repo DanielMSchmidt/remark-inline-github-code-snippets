@@ -87,10 +87,9 @@ const RemarkInlineGithubCodeSnippet: Plugin<[Options?], Root> = (
         }
         const ext = Path.parse(new URL(snippet.url).pathname.split("/").slice(5).join("/")).ext;
 
-        const snippetContent = content
-          .split("\n")
-          .slice(start - 1, end)
-          .join("\n");
+        const snippetContent = dedentLines(
+          content.split("\n").slice(start - 1, end),
+        );
         snippet.inline({
           type: "code",
           lang: pathExtensionToMarkdownLanguageTag(ext),
@@ -166,6 +165,21 @@ export function commentOutBasedOnLanguage(ext: string, code: string) {
 
 export function pathExtensionToMarkdownLanguageTag(ext: string) {
   return (supportedLanguageExtensions[ext] || defaultLanguageExtension).markdown;
+}
+
+export function dedentLines(lines: string[]): string {
+  const nonEmptyLines = lines.filter((line) => line.trim().length > 0);
+  if (nonEmptyLines.length === 0) return lines.join("\n");
+
+  const commonIndent = nonEmptyLines.reduce((min, line) => {
+    const match = line.match(/^(\s*)/);
+    const indent = match ? match[1].length : 0;
+    return Math.min(min, indent);
+  }, Infinity);
+
+  if (commonIndent === 0) return lines.join("\n");
+
+  return lines.map((line) => line.slice(commonIndent)).join("\n");
 }
 
 export default RemarkInlineGithubCodeSnippet;

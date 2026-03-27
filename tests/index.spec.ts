@@ -21,7 +21,10 @@ describe("remark-inline-github-code-snippets", () => {
       "
       <h1>The Main Heading</h1>
       <p>
-        <pre><code class="language-go">type promiseResult struct {
+        <pre><code class="language-go">	return PromiseID{p}
+      }
+
+      type promiseResult struct {
       	val any
       	err error
 
@@ -29,9 +32,6 @@ describe("remark-inline-github-code-snippets", () => {
       	// itself, as opposed to from calling tasks. We use this to behave more
       	// gracefully when the responsible task resolution races with the internal
       	// error, so that we can treat that differently to when the responsible
-      	// task itself tries to resolve a promise multiple times.
-      	forced bool
-      }
       </code></pre><a href="https://github.com/hashicorp/terraform/blob/main/internal/promising/promise.go#L30-L40">ignore</a>
       </p>
       <h2>Ignored because it's not a github url</h2>
@@ -56,6 +56,9 @@ describe("remark-inline-github-code-snippets", () => {
       <h1>The Main Heading</h1>
       <p>
         <pre><code class="language-go">// Source: https://github.com/hashicorp/terraform/blob/main/internal/promising/promise.go#L30-L40
+      	return PromiseID{p}
+      }
+
       type promiseResult struct {
       	val any
       	err error
@@ -64,9 +67,6 @@ describe("remark-inline-github-code-snippets", () => {
       	// itself, as opposed to from calling tasks. We use this to behave more
       	// gracefully when the responsible task resolution races with the internal
       	// error, so that we can treat that differently to when the responsible
-      	// task itself tries to resolve a promise multiple times.
-      	forced bool
-      }
       </code></pre><a href="https://github.com/hashicorp/terraform/blob/main/internal/promising/promise.go#L30-L40">ignore</a>
       </p>
       <h2>Ignored because it's not a github url</h2>
