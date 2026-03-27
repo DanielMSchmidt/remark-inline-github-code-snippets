@@ -172,8 +172,7 @@ export function dedentLines(lines: string[]): string {
   if (nonEmptyLines.length === 0) return lines.join("\n");
 
   const commonIndent = nonEmptyLines.reduce((min, line) => {
-    const match = line.match(/^(\s*)/);
-    const indent = match ? match[1].length : 0;
+    const indent = line.search(/\S/);
     return Math.min(min, indent);
   }, Infinity);
 
